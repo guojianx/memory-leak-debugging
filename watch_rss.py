@@ -48,9 +48,20 @@ def draw(i):
 
     max_offsetbox = TextArea(max_str, minimumdescent=False)
     min_offsetbox = TextArea(min_str, minimumdescent=False)
-    note_str = 'max:  ' + str(max_y) + ' kB\n' + \
-               'min:  ' + str(min_y) + ' kB\n' + \
-               'diff: ' + str(max_y - min_y) + ' kB'
+    
+    max_value_str = str(max_y) + ' kB'
+    min_value_str = str(min_y) + ' kB'
+    dif_value_str = str(max_y - min_y) + ' kB'
+    if (max_y / 1024) > 1:
+        max_value_str += ' (' + str(int(max_y/1024)) + ' MB)'
+    if (min_y / 1024) > 1:
+        min_value_str += ' (' + str(int(min_y/1024)) + ' MB)'
+    if ((max_y - min_y) / 1024) > 1:
+        dif_value_str += ' (' + str(int((max_y - min_y)/1024)) + ' MB)'
+
+    note_str = 'max:  ' + max_value_str + '\n' + \
+               'min:  ' + min_value_str + '\n' + \
+               'diff: ' + dif_value_str + ''
 
     max_ab = AnnotationBbox(max_offsetbox, (max_x, max_y),
             xybox=(1.02, 1.02),
