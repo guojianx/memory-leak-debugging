@@ -1,7 +1,10 @@
 # python_tools
 
 Debug Memory Leak With GDB:
+
 First of all, that's necessary to find out the right breakpoint (such as leaveq) in a functioni by 'disassemble' command, at that point we can access the return value of the function with the register rax.
+
+```bash
 (gdb) info breakpoints 
 Num     Type           Disp Enb Address            What
 1       hw breakpoint  keep n   0x00000000015ad7eb in av_malloc at libavutil/mem.c:133
@@ -23,4 +26,4 @@ Num     Type           Disp Enb Address            What
         printf "0x%016llx, av_realloc, 0x%016llx, %ld\n", $rax, ptr, size
         where
         continue
-
+```
